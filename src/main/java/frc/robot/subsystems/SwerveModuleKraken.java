@@ -6,23 +6,28 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
+import frc.robot.hardware.KrakenMotor;
+
+// THIS CLASS IS NOT COMPLETE
+
+
 public class SwerveModuleKraken {
-    private final TalonFX driveMotor;
-    private final TalonFX turnMotor;
+    private final KrakenMotor driveMotor;
+    private final KrakenMotor turnMotor;
 
     private final double P = 0.2;
     private final double MAX_SPEED_METERS_PER_SECOND = Units.feetToMeters(14);
 
     public SwerveModuleKraken(int driveMotorDeviceId, int turnMotorDeviceId) {
-        driveMotor = new TalonFX(driveMotorDeviceId);
-        turnMotor = new TalonFX(turnMotorDeviceId);
+        driveMotor = new KrakenMotor(driveMotorDeviceId);
+        turnMotor = new KrakenMotor(turnMotorDeviceId);
     }
 
-    public TalonFX getDriveMotor() {
+    public KrakenMotor getDriveMotor() {
         return driveMotor;
     }
 
-    public TalonFX getTurnMotor() {
+    public KrakenMotor getTurnMotor() {
         return turnMotor;
     }
 
@@ -32,8 +37,9 @@ public class SwerveModuleKraken {
         setAngle(state.angle);
     }
 
+    // this is not tested
     public void setAngle(Rotation2d desiredAngle) {
-        Rotation2d currentAngle = Rotation2d.fromRotations(turnMotor.getPosition().getValueAsDouble());
+        Rotation2d currentAngle = Rotation2d.fromRotations(turnMotor.getPositionRotations());
         double errorRadians = desiredAngle.getRadians() - currentAngle.getRadians();
         if (Math.abs(errorRadians) < Math.PI) {
             errorRadians = -errorRadians;

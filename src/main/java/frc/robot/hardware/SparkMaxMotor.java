@@ -1,16 +1,18 @@
-package frc.robot.subsystems;
+package frc.robot.hardware;
 
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
-public class Motor {
+import frc.robot.subsystems.DriveUtils;
+
+public class SparkMaxMotor {
     private final SparkMax motor;
     private final RelativeEncoder encoder;
     private final boolean reverseMotor;
     private final boolean reverseEncoder;
 
-    public Motor(int deviceId, Boolean reverseMotor, Boolean reverseEncoder) {
+    public SparkMaxMotor(int deviceId, Boolean reverseMotor, Boolean reverseEncoder) {
         motor = new SparkMax(deviceId, MotorType.kBrushless);
         encoder = motor.getEncoder();
         this.reverseMotor = reverseMotor;

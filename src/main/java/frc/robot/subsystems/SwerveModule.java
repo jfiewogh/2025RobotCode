@@ -6,14 +6,16 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.hardware.AbsoluteEncoder;
 import frc.robot.hardware.AbsoluteEncoder.EncoderConfig;
+import frc.robot.hardware.SparkMaxMotor;
 
 public class SwerveModule {
-    private final Motor driveMotor;
-    private final Motor angleMotor;
+    private final SparkMaxMotor driveMotor;
+    private final SparkMaxMotor angleMotor;
 
     private final AbsoluteEncoder wheelAngleAbsoluteEncoder; // rotations of the wheel, not the motor
 
@@ -21,10 +23,10 @@ public class SwerveModule {
 
     public SwerveModule(int driveMotorDeviceId, int angleMotorDeviceId, Translation2d location, EncoderConfig config) {
         // does the type of battery or position affect this?
-        driveMotor = new Motor(driveMotorDeviceId, false, false);
+        driveMotor = new SparkMaxMotor(driveMotorDeviceId, false, false);
         // option 1: true, true
         // option 2: false, false
-        angleMotor = new Motor(angleMotorDeviceId, true, true);
+        angleMotor = new SparkMaxMotor(angleMotorDeviceId, true, true);
 
         wheelAngleAbsoluteEncoder = new AbsoluteEncoder(config, SensorDirectionValue.CounterClockwise_Positive);
 
