@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
@@ -37,7 +35,7 @@ public class SwerveModuleKraken {
         setAngle(state.angle);
     }
 
-    // this is not tested
+    // this is not
     public void setAngle(Rotation2d desiredAngle) {
         Rotation2d currentAngle = Rotation2d.fromRotations(turnMotor.getPositionRotations());
         double errorRadians = desiredAngle.getRadians() - currentAngle.getRadians();
